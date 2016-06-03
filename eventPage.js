@@ -15,12 +15,10 @@ if (appId) {
 
 function showBetaSignup(appId) {
     var playButton = document.querySelector('.play-button.buy-button-container'),
-        betaButton = playButton.cloneNode(true);
-    betaButton.querySelector('button > span:last-child').innerText = "Beta";
+        betaButton = document.createElement('a');
+    betaButton.href = 'https://play.google.com/apps/testing/' + appId;
+    betaButton.target = "_blank";
+    betaButton.innerText = "Beta";
+    betaButton.className = "apps large play-button";
     playButton.parentNode.insertBefore(betaButton, playButton);
-
-    betaButton.querySelector('button').addEventListener('click', function (event) {
-        event.stopPropagation();
-        window.open('https://play.google.com/apps/testing/' + appId);
-    });
 }
