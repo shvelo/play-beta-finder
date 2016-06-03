@@ -4,7 +4,7 @@ if (appId) {
     var xhr = new XMLHttpRequest();
     xhr.onreadystatechange = function (event) {
         if(event.target.readyState === 4) {
-            if(event.target.response.includes("Leave the testing program")) {
+            if(event.target.response.includes("You are a tester")) {
                 showBetaSignup(appId, true);
             } else if(event.target.response.includes("Become a tester")) {
                 showBetaSignup(appId, false);
