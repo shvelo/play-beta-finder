@@ -6,13 +6,14 @@
   "content_scripts": [
     {
       "matches": [
-        "https://play.google.com/store/apps/*"
+        "https://play.google.com/*"
       ],
       "js": [
-        "eventPage.js"
+        "extension.js"
       ]
     }
   ],
+  "web_accessible_resources": ["page.js"],
   "permissions": [
     "tabs",
     "https://play.google.com/*"
