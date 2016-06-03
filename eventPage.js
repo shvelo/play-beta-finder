@@ -4,8 +4,10 @@ if (appId) {
     var xhr = new XMLHttpRequest();
     xhr.onreadystatechange = function (event) {
         if(event.target.readyState === 4) {
-            if(!event.target.response.includes("App not available for this account")) {
-                showBetaSignup(appId);
+            if(event.target.response.includes("Leave the testing program")) {
+                showBetaSignup(appId, true);
+            } else if(event.target.response.includes("Become a tester")) {
+                showBetaSignup(appId, false);
             }
         }
     };
@@ -13,12 +15,12 @@ if (appId) {
     xhr.send();
 }
 
-function showBetaSignup(appId) {
+function showBetaSignup(appId, enrolled) {
     var playButton = document.querySelector('.play-button.buy-button-container'),
         betaButton = document.createElement('a');
     betaButton.href = 'https://play.google.com/apps/testing/' + appId;
     betaButton.target = "_blank";
-    betaButton.innerText = "Beta";
+    betaButton.innerText = enrolled? "Leave beta" : "Join beta";
     betaButton.className = "apps large play-button";
     playButton.parentNode.insertBefore(betaButton, playButton);
 }
